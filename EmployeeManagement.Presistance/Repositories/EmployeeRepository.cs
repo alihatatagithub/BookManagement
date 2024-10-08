@@ -15,17 +15,17 @@ namespace EmployeeManagement.Presistance.Repositories
 {
     public class EmployeeRepository :  IEmployeeRepository
     {
-        private readonly EmployeeEntities BookEntities;
+        private readonly EmployeeEntities EmployeeEntities;
         private readonly UserManager<User> _userManager;
 
-        public EmployeeRepository(EmployeeEntities book, UserManager<User> userManager)
+        public EmployeeRepository(EmployeeEntities employeeEntities, UserManager<User> userManager)
         {
-            BookEntities = book;
+            EmployeeEntities = employeeEntities;
             _userManager = userManager;
         }
         public async Task<CustomEmployee> GetEmployeeList(DTOGetEmployeeList model)
         {
-            var query = BookEntities.Employees.AsQueryable();
+            var query = EmployeeEntities.Employees.AsQueryable();
 
             var booksCount = query.Count();
 
@@ -102,8 +102,8 @@ namespace EmployeeManagement.Presistance.Repositories
         }
         public async Task DeleteEmployee(string id)
         {
-            var result = await BookEntities.Employees.Where(a => a.Id == id).FirstOrDefaultAsync();
-            BookEntities.Employees.Remove(result);
+            var result = await EmployeeEntities.Employees.Where(a => a.Id == id).FirstOrDefaultAsync();
+            EmployeeEntities.Employees.Remove(result);
         }
     }
 }

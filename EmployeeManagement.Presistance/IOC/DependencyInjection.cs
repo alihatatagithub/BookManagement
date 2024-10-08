@@ -68,6 +68,9 @@ namespace EmployeeManagement.Presistance.IOC
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IEmployeeFactory, EmployeeFactory>();
 
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDepartmentService, DepartmentService>();
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

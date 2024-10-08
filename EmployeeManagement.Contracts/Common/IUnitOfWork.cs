@@ -11,6 +11,7 @@ namespace EmployeeManagement.Contracts.Common
     {
         IUserRepository UserRepository { get; }
         IEmployeeRepository EmployeeRepository { get; }
+        IDepartmentRepository DepartmentRepository { get; }
         Task SaveChangesAsync();
 
     }

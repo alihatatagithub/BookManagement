@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.Data.Entities;
+﻿using EmployeeManagement.Api.SignalRHubs;
+using EmployeeManagement.Data.Entities;
 using EmployeeManagement.Presistance;
 using EmployeeManagement.Presistance.IOC;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -23,6 +24,7 @@ namespace EmployeeManagement.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
             services.AddInfrastructure(Configuration);
 
             //});
@@ -57,6 +59,7 @@ namespace EmployeeManagement.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapHub<EmployeeHub>("/employeeHub");
                 //endpoints.MapHub<TeacherHub>("/teacherHub");
             });
         }
